@@ -97,12 +97,12 @@ public class ExtFlightDelaysDAO {
 	public List<CoppieAereoporti> getCollegamenti(Map<Integer, Airport> airportsIdMap){
 		String sql="SELECT DISTINCT f1.ORIGIN_AIRPORT_ID,f1.DESTINATION_AIRPORT_ID, AVG(f1.DISTANCE) AS 'dist_media' " + 
 				"FROM flights f1 " + 
-				"WHERE f1.ORIGIN_AIRPORT_ID>f1.DESTINATION_AIRPORT_ID " + 
 				"GROUP BY f1.ORIGIN_AIRPORT_ID, f1.DESTINATION_AIRPORT_ID";
 		List<CoppieAereoporti> result= new ArrayList<CoppieAereoporti>();
 		try {
 			Connection conn = ConnectDB.getConnection();
 			PreparedStatement st = conn.prepareStatement(sql);
+			//st.setInt(1, 500);
 			ResultSet rs = st.executeQuery();
 
 			while (rs.next()) {
